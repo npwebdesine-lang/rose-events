@@ -18,6 +18,10 @@
     <!-- Sticky Dot Navigation -->
     <nav class="dotnav" aria-label="ניווט מהיר">
       <div class="container dotnav__inner">
+        <a class="brand" href="#top" aria-label="ROSE - חזרה לבית">
+          <img class="brand__logo" src="logo.png" alt="ROSE הפקות" />
+        </a>
+
         <a class="dotnav__item" href="#top" data-label="בית">
           <span class="dotnav__icon" aria-hidden="true">🏠</span>
           <span class="dotnav__dot" aria-hidden="true"></span>
@@ -55,12 +59,28 @@
       </div>
 
       <div class="container hero__content reveal">
-        <p class="hero__kicker">ברוכים הבאים ל</p>
+        <!-- ✅ Logo lockup (logo + text for SEO + credibility) -->
+        <div class="hero__brand" aria-label="ROSE הפקות">
+          <div class="hero__logoWrap">
+            <img
+              class="hero__logo"
+              src="logo.png"
+              alt="לוגו ROSE הפקות"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
 
-        <h1 class="hero__title">
-          <span class="hero__title-he">הפקות</span>
-          <span class="hero__title-en">ROSE</span>
-        </h1>
+          <!-- ✅ טקסט נשאר בקוד (SEO + נגישות) -->
+          <div class="hero__brandText">
+            <p class="hero__kicker">ברוכים הבאים ל</p>
+
+            <h1 class="hero__title">
+              <span class="hero__title-he">הפקות</span>
+              <span class="hero__title-en">ROSE</span>
+            </h1>
+          </div>
+        </div>
 
         <p class="hero__sub">
           שילוב של אסתטיקה, דיוק ויצירתיות<br />
@@ -230,7 +250,7 @@
     <!-- Floating WhatsApp -->
     <a
       class="fab"
-      href="https://wa.me/972509212412"
+      href="https://wa.me/97253587078"
       target="_blank"
       rel="noopener"
     >
