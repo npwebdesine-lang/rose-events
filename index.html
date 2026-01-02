@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ROSE הפקות</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png" />
+
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,8 +21,10 @@
     <!-- Sticky Dot Navigation -->
     <nav class="dotnav" aria-label="ניווט מהיר">
       <div class="container dotnav__inner">
-        <a class="brand" href="#top" aria-label="ROSE - חזרה לבית">
+        <!-- Brand: לוגו + טקסט בצד ימין, בלי מסגרת -->
+        <a class="brand" href="#top" aria-label="ROSE הפקות - חזרה לבית">
           <img class="brand__logo" src="logo.png" alt="ROSE הפקות" />
+          <span class="brand__name">רוז הפקות</span>
         </a>
 
         <a class="dotnav__item" href="#top" data-label="בית">
@@ -59,28 +64,12 @@
       </div>
 
       <div class="container hero__content reveal">
-        <!-- ✅ Logo lockup (logo + text for SEO + credibility) -->
-        <div class="hero__brand" aria-label="ROSE הפקות">
-          <div class="hero__logoWrap">
-            <img
-              class="hero__logo"
-              src="logo.png"
-              alt="לוגו ROSE הפקות"
-              loading="eager"
-              decoding="async"
-            />
-          </div>
+        <p class="hero__kicker">ברוכים הבאים ל</p>
 
-          <!-- ✅ טקסט נשאר בקוד (SEO + נגישות) -->
-          <div class="hero__brandText">
-            <p class="hero__kicker">ברוכים הבאים ל</p>
-
-            <h1 class="hero__title">
-              <span class="hero__title-he">הפקות</span>
-              <span class="hero__title-en">ROSE</span>
-            </h1>
-          </div>
-        </div>
+        <h1 class="hero__title">
+          <span class="hero__title-he">הפקות</span>
+          <span class="hero__title-en">ROSE</span>
+        </h1>
 
         <p class="hero__sub">
           שילוב של אסתטיקה, דיוק ויצירתיות<br />
@@ -192,12 +181,8 @@
 
           <!-- Card 3 -->
           <article class="card card--small reveal">
-            <img
-              class="card__img js-lightbox"
-              src="perah.png"
-              alt="מיצג פרח"
-              loading="lazy"
-            />
+            <img class="card__img js-lightbox" src="perah.png" alt="מיצג פרח"
+            loading="lazy” />
             <div class="card__body">
               <h3 class="card__title">מיצג פרח 💐</h3>
               <p class="card__text">
