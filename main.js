@@ -7,120 +7,26 @@
 })();
 
 // =========================
-// To top button
+// To top (topnav button)
 // =========================
 (() => {
-  const btn = document.querySelector(".to-top");
+  const btn = document.querySelector(".topnav__totop");
   if (!btn) return;
-
-  const onScroll = () => {
-    btn.classList.toggle("is-visible", window.scrollY > 600);
-  };
 
   btn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
-
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
 })();
 
 // =========================
-// Reveal on scroll
+// Smooth anchors
 // =========================
 (() => {
-  const items = document.querySelectorAll(".reveal");
-  if (!items.length) return;
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) e.target.classList.add("is-visible");
-      });
-    },
-    { threshold: 0.12 }
-  );
-
-  items.forEach((el) => io.observe(el));
-})();
-
-// =========================
-// Lightbox
-// =========================
-(() => {
-  const lb = document.querySelector(".lightbox");
-  const lbImg = document.querySelector(".lightbox__img");
-  const closeBtn = document.querySelector(".lightbox__close");
-  const triggers = document.querySelectorAll(".js-lightbox");
-
-  if (!lb || !lbImg || !closeBtn || !triggers.length) return;
-
-  const open = (src, alt) => {
-    lb.classList.add("is-open");
-    lbImg.src = src;
-    lbImg.alt = alt || "תמונה מוגדלת";
-    document.body.style.overflow = "hidden";
-  };
-
-  const close = () => {
-    lb.classList.remove("is-open");
-    lbImg.src = "";
-    document.body.style.overflow = "";
-  };
-
-  triggers.forEach((img) => {
-    img.addEventListener("click", () => open(img.src, img.alt));
-  });
-
-  closeBtn.addEventListener("click", close);
-  lb.addEventListener("click", (e) => {
-    if (e.target === lb) close();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") close();
-  });
-})();
-
-// =========================
-// FIX ALL JUMPS + correct offset under sticky nav
-// =========================
-(() => {
-  const nav = document.querySelector(".dotnav");
-  if (!nav) return;
-
-  const getOffset = () => {
-    const navH = nav.getBoundingClientRect().height || 0;
-    const gap = 14; // מרווח קטן מתחת ל-nav
-    return navH + gap;
-  };
-
-  const applyCssOffset = () => {
-    const offset = getOffset();
-    document.documentElement.style.setProperty(
-      "--anchor-offset",
-      `${offset}px`
-    );
-  };
-
   const scrollToTarget = (target) => {
-    if (!target) return;
-
-    applyCssOffset();
-    const offset = getOffset();
-
-    const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
-
-    window.scrollTo({
-      top: Math.max(0, Math.round(y)),
-      behavior: "smooth",
-    });
+    const y = target.getBoundingClientRect().top + window.pageYOffset - 80;
+    window.scrollTo({ top: Math.max(0, Math.round(y)), behavior: "smooth" });
   };
 
-  applyCssOffset();
-  window.addEventListener("resize", applyCssOffset);
-
-  // intercept hash clicks
   document.addEventListener("click", (e) => {
     const a = e.target.closest('a[href^="#"]');
     if (!a) return;
@@ -135,99 +41,116 @@
     e.preventDefault();
     history.pushState(null, "", href);
     scrollToTarget(target);
-
-    // force update after click
-    setTimeout(() => window.dispatchEvent(new Event("scroll")), 50);
-    setTimeout(() => window.dispatchEvent(new Event("scroll")), 200);
-    setTimeout(() => window.dispatchEvent(new Event("scroll")), 450);
-  });
-
-  // load with hash
-  window.addEventListener("load", () => {
-    if (location.hash && location.hash.length > 1) {
-      const id = location.hash.slice(1);
-      const target = document.getElementById(id);
-      if (target) setTimeout(() => scrollToTarget(target), 0);
-    }
-  });
-
-  // back/forward
-  window.addEventListener("popstate", () => {
-    if (location.hash && location.hash.length > 1) {
-      const id = location.hash.slice(1);
-      const target = document.getElementById(id);
-      if (target) scrollToTarget(target);
-    }
   });
 })();
 
 // =========================
-// DotNav Active (correct for ALL sections + bottom of page => contact)
+// Carousels (works + about)
 // =========================
 (() => {
-  const nav = document.querySelector(".dotnav");
-  const links = Array.from(document.querySelectorAll(".dotnav__item"));
-  if (!nav || !links.length) return;
+  const carousels = document.querySelectorAll("[data-carousel]");
+  if (!carousels.length) return;
 
-  const getOffsetLine = () => {
-    const navH = nav.getBoundingClientRect().height || 0;
-    return navH + 18;
-  };
+  const init = (root) => {
+    const track = root.querySelector(".carousel__track");
+    const slides = Array.from(track?.children || []);
+    const prev = root.querySelector(".carousel__btn--prev");
+    const next = root.querySelector(".carousel__btn--next");
+    const dotsWrap = root.querySelector(".carousel__dots");
+    if (!track || !slides.length || !prev || !next || !dotsWrap) return;
 
-  const targets = links
-    .map((a) => {
-      const id = (a.getAttribute("href") || "").replace("#", "");
-      const el = document.getElementById(id);
-      return el ? { id, el } : null;
-    })
-    .filter(Boolean);
+    // אם יש רק תמונה אחת – מסתירים כפתורי ניווט ונקודות
+    const single = slides.length === 1;
+    if (single) {
+      prev.style.display = "none";
+      next.style.display = "none";
+      dotsWrap.style.display = "none";
+      return;
+    }
 
-  const setActive = (id) => {
-    links.forEach((a) => {
-      const hrefId = (a.getAttribute("href") || "").replace("#", "");
-      a.classList.toggle("is-active", hrefId === id);
+    let index = 0;
+
+    dotsWrap.innerHTML = "";
+    const dots = slides.map((_, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "carousel__dot" + (i === 0 ? " is-active" : "");
+      b.setAttribute("aria-label", `לתמונה ${i + 1}`);
+      b.addEventListener("click", () => go(i));
+      dotsWrap.appendChild(b);
+      return b;
     });
-  };
 
-  const update = () => {
-    // bottom => contact
-    const nearBottom =
-      window.innerHeight + window.scrollY >=
-      document.documentElement.scrollHeight - 6;
+    const update = () => {
+      // ב-RTL זה נוח יותר להזיז חיובי
+      track.style.transform = `translateX(${index * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle("is-active", i === index));
+    };
 
-    if (nearBottom) {
-      setActive("contact");
-      return;
-    }
-
-    // top => top
-    if (window.scrollY < 10) {
-      setActive("top");
-      return;
-    }
-
-    const line = getOffsetLine();
-    let current = "top";
-
-    for (const t of targets) {
-      const r = t.el.getBoundingClientRect();
-      if (r.top <= line) current = t.id;
-    }
-
-    setActive(current);
-  };
-
-  let ticking = false;
-  const onScroll = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
+    const clamp = (n) => Math.max(0, Math.min(slides.length - 1, n));
+    const go = (i) => {
+      index = clamp(i);
       update();
-      ticking = false;
+    };
+
+    prev.addEventListener("click", () => go(index - 1));
+    next.addEventListener("click", () => go(index + 1));
+
+    // swipe
+    let startX = 0;
+    let isDown = false;
+
+    root.addEventListener("pointerdown", (e) => {
+      isDown = true;
+      startX = e.clientX;
     });
+
+    root.addEventListener("pointerup", (e) => {
+      if (!isDown) return;
+      isDown = false;
+
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) < 40) return;
+
+      if (dx > 0) go(index - 1);
+      else go(index + 1);
+    });
+
+    root.addEventListener("pointercancel", () => (isDown = false));
+
+    update();
   };
 
-  update();
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", update);
+  carousels.forEach(init);
+})();
+
+// =========================
+// Match height: "בוא נכיר" - גובה הקרוסלה = גובה הטקסט
+// (רק בדסקטופ)
+(() => {
+  const root = document.querySelector("[data-match-height]");
+  if (!root) return;
+
+  const selector = root.getAttribute("data-match-height");
+  const target = document.querySelector(selector);
+  if (!target) return;
+
+  const apply = () => {
+    // אם המסך קטן, לא מכריחים גובה
+    if (window.matchMedia("(max-width: 980px)").matches) {
+      root.style.height = "";
+      return;
+    }
+
+    const h = target.getBoundingClientRect().height;
+    if (h > 0) {
+      root.style.height = `${Math.round(h)}px`;
+      // גם התמונות יתאימו
+      const imgs = root.querySelectorAll("img");
+      imgs.forEach((img) => (img.style.height = "100%"));
+    }
+  };
+
+  apply();
+  window.addEventListener("resize", apply);
 })();

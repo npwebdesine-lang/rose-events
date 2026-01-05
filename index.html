@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ROSE הפקות</title>
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="logo.png" />
-
     <link rel="stylesheet" href="style.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,208 +17,360 @@
   </head>
 
   <body>
-    <!-- Sticky Dot Navigation -->
-    <nav class="dotnav" aria-label="ניווט מהיר">
-      <div class="container dotnav__inner">
-        <!-- Brand: לוגו + טקסט בצד ימין, בלי מסגרת -->
-        <a class="brand" href="#top" aria-label="ROSE הפקות - חזרה לבית">
-          <img class="brand__logo" src="logo.png" alt="ROSE הפקות" />
-          <span class="brand__name">רוז הפקות</span>
+    <!-- =========================================================
+      ✅ TOP HORIZONTAL NAV (הוסר המבורגר + תפריט צד)
+      הערה: sticky למעלה + לא מסתיר קפיצות בגלל anchor-offset
+    ========================================================= -->
+    <nav class="topnav" aria-label="תפריט ניווט עליון">
+      <div class="container topnav__inner">
+        <a class="topnav__brand" href="#top" aria-label="ROSE הפקות">
+          <img src="logo.png" class="topnav__logo" alt="ROSE הפקות" />
+          <span class="topnav__name">רוז הפקות</span>
         </a>
 
-        <a class="dotnav__item" href="#top" data-label="בית">
-          <span class="dotnav__icon" aria-hidden="true">🏠</span>
-          <span class="dotnav__dot" aria-hidden="true"></span>
-          <span class="dotnav__text">בית</span>
-        </a>
-
-        <a class="dotnav__item" href="#benefits" data-label="יתרונות">
-          <span class="dotnav__icon" aria-hidden="true">✨</span>
-          <span class="dotnav__dot" aria-hidden="true"></span>
-          <span class="dotnav__text">יתרונות</span>
-        </a>
-
-        <a class="dotnav__item" href="#works" data-label="עבודות">
-          <span class="dotnav__icon" aria-hidden="true">🌸</span>
-          <span class="dotnav__dot" aria-hidden="true"></span>
-          <span class="dotnav__text">עבודות</span>
-        </a>
-
-        <a class="dotnav__item" href="#contact" data-label="יצירת קשר">
-          <span class="dotnav__icon" aria-hidden="true">💬</span>
-          <span class="dotnav__dot" aria-hidden="true"></span>
-          <span class="dotnav__text">יצירת קשר</span>
-        </a>
+        <div class="topnav__links">
+          <a class="toplink" href="#top">🏠 בית</a>
+          <a class="toplink" href="#benefits">✨ יתרונות</a>
+          <a class="toplink" href="#works">🌸 מיצגים</a>
+          <a class="toplink" href="#about">💖 בוא נכיר</a>
+          <a class="toplink" href="#contact">💬 יצירת קשר</a>
+          <button class="topnav__totop" type="button" aria-label="חזרה למעלה">
+            ↑
+          </button>
+        </div>
       </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- =========================================================
+      ✅ HERO (ללא כרטיסים, הטקסט יושב על הרקע)
+    ========================================================= -->
     <header id="top" class="hero">
-      <div class="hero__bg" aria-hidden="true">
-        <span class="blob blob--1"></span>
-        <span class="blob blob--2"></span>
-        <span class="blob blob--3"></span>
-        <span class="sparkle">✨</span>
-        <span class="sparkle sparkle--2">✨</span>
-      </div>
-
-      <div class="container hero__content reveal">
-        <p class="hero__kicker">ברוכים הבאים ל</p>
+      <div class="container hero__inner">
+        <p class="hero__kicker">✨ מיצגים ואטרקציות ✨</p>
 
         <h1 class="hero__title">
-          <span class="hero__title-he">הפקות</span>
-          <span class="hero__title-en">ROSE</span>
+          <span class="hero__rose" aria-label="ROSE">ROSE</span>
+          <span class="hero__he">הפקות</span>
         </h1>
 
         <p class="hero__sub">
-          שילוב של אסתטיקה, דיוק ויצירתיות<br />
-          כדי להפוך כל אירוע לבלתי נשכח
+          מיצגים ואטרקציות יחודיים לאירועים מיוחדים<br />
+          כדי שכל אורח ירגיש יחס אישי
         </p>
 
         <div class="hero__actions">
-          <a class="btn btn--primary" href="#contact">בואו נשריין תאריך</a>
-          <a class="btn btn--ghost" href="#works">בואו נראה עבודות</a>
+          <a class="btn btn--primary" href="#contact">צרו קשר</a>
+          <a class="btn btn--ghost" href="#works">גלו את השירותים שלנו</a>
         </div>
       </div>
 
       <div class="wave" aria-hidden="true">
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <svg viewBox="0 0 1440 140" preserveAspectRatio="none">
           <path
-            d="M0,64 C160,110 320,110 480,85 C640,60 800,20 960,30 C1120,40 1280,85 1440,70 L1440,120 L0,120 Z"
+            d="M0,90 C190,150 350,150 520,115 C720,70 900,10 1080,40 C1240,60 1320,120 1440,100 L1440,140 L0,140 Z"
           ></path>
         </svg>
       </div>
     </header>
 
-    <!-- FEATURES -->
-    <section id="benefits" class="features" aria-label="יתרונות">
-      <div class="container features__grid">
-        <div class="feature reveal">
-          <div class="feature__icon" aria-hidden="true">✦</div>
-          <h3 class="feature__title">חוויה נכונה</h3>
-          <p class="feature__text">
-            התאמה מלאה לסגנון, לאווירה ולמה שחשוב לכם — בלי רעש, עם הרבה סטייל.
-          </p>
+    <!-- =========================================================
+      ✅ FEATURES (כרטיסים נשארים! כמו שביקשת)
+    ========================================================= -->
+    <section id="benefits" class="features">
+      <div class="container">
+        <h2 class="section-title section-title--strong">
+          <span class="title-emoji" aria-hidden="true">🌟</span>
+          הערכים שמובילים את החברה הם:
+          <span class="title-emoji" aria-hidden="true">🌟</span>
+        </h2>
+
+        <div class="feature-carousel" aria-label="קרוסלת ערכים">
+          <div class="feature-track">
+            <article class="feature-chip feature-chip--1">
+              <div class="chip-emoji" aria-hidden="true">🌟</div>
+              <h3>ייחודיות</h3>
+              <p>מיצגים בעיצוב מוקפד, כל פרט נבחר כדי לייצר וואו אמיתי.</p>
+            </article>
+
+            <article class="feature-chip feature-chip--2">
+              <div class="chip-emoji" aria-hidden="true">💖</div>
+              <h3>יחס אישי</h3>
+              <p>כל אורח מרגיש שמסתכלים עליו, מחווה קטנה שיוצרת חיבור גדול.</p>
+            </article>
+
+            <article class="feature-chip feature-chip--3">
+              <div class="chip-emoji" aria-hidden="true">🎨</div>
+              <h3>אסתטיקה ודיוק</h3>
+              <p>נראות אלגנטית והרמוניה צבעונית, בלי פשרות על איכות.</p>
+            </article>
+
+            <article class="feature-chip feature-chip--4">
+              <div class="chip-emoji" aria-hidden="true">🎉</div>
+              <h3>שמחה וצבע</h3>
+              <p>אנרגיה שמרימה את הרחבה ומכניסה אור לכל רגע.</p>
+            </article>
+
+            <article class="feature-chip feature-chip--5">
+              <div class="chip-emoji" aria-hidden="true">💕</div>
+              <h3>חיבור בין לבבות</h3>
+              <p>רגעים קטנים שמייצרים זיכרון גדול, למארחים ולאורחים.</p>
+            </article>
+
+            <article class="feature-chip feature-chip--6">
+              <div class="chip-emoji" aria-hidden="true">🤝</div>
+              <h3>שירות מכל הלב</h3>
+              <p>הקשבה, גמישות וליווי אמיתי, עד שהכול יושב בול.</p>
+            </article>
+          </div>
         </div>
 
-        <div class="feature reveal">
-          <div class="feature__icon" aria-hidden="true">❤</div>
-          <h3 class="feature__title">יחס אישי</h3>
-          <p class="feature__text">
-            ליווי אנושי, זמין ומרגיע לאורך הדרך — כדי שתהיו בראש שקט ביום
-            האירוע.
-          </p>
+        <p class="features__hint">אפשר לגלול אופקית עם עכבר/טאצ׳ או לגרור.</p>
+      </div>
+    </section>
+
+    <!-- =========================================================
+      ✅ WORKS (החזרנו “סוכריות”)
+      הערה: אם יש לך יותר מתמונה אחת, הוסף בתוך ה-carousel עוד <img>
+    ========================================================= -->
+    <main id="works" class="works">
+      <div class="container">
+        <div class="works__head">
+          <div class="pill">דוגמאות</div>
+          <h2 class="section-title">
+            מציגים <span class="accent">שמפנקים</span> לכם
+          </h2>
+          <p class="muted">תוכלו לעבור בין תמונות כדי להתרשם מכל מיצג.</p>
         </div>
 
-        <div class="feature reveal">
-          <div class="feature__icon" aria-hidden="true">☻</div>
-          <h3 class="feature__title">ייחודיות</h3>
-          <p class="feature__text">
-            טאצ׳ יצירתי ומוקפד שמשאיר חותם — פרטים קטנים שמרגישים כמו קסם.
-          </p>
+        <!-- מיצג פירות -->
+        <section class="work" aria-label="מיצג פירות">
+          <div class="work__grid">
+            <div class="carousel" data-carousel>
+              <div class="carousel__viewport">
+                <div class="carousel__track">
+                  <img
+                    src="frute.png"
+                    alt="מיצג פירות - תמונה 1"
+                    loading="lazy"
+                  />
+                  <img
+                    src="frute_2.png"
+                    alt="מיצג פירות - תמונה 2"
+                    loading="lazy"
+                  />
+                  <img
+                    src="frute_3.png"
+                    alt="מיצג פירות - תמונה 3"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel__btn carousel__btn--prev"
+                type="button"
+                aria-label="תמונה קודמת"
+              >
+                ‹
+              </button>
+              <button
+                class="carousel__btn carousel__btn--next"
+                type="button"
+                aria-label="תמונה הבאה"
+              >
+                ›
+              </button>
+              <div class="carousel__dots" aria-label="בחירת תמונה"></div>
+            </div>
+
+            <div class="work__text">
+              <h3 class="work__title">מיצג פירות 🍇</h3>
+              <p class="work__desc">
+                דמות פיה קסומה עם עמדת פירות מעוצבת. אפקט וואו מובטח.
+              </p>
+              <ul class="work__bullets">
+                <li>פירות העונה חתוכים ע״י ספק מקצועי</li>
+                <li>אפשרות לתעודת כשרות</li>
+                <li>נראות ויזואלית מהפנטת</li>
+                <li>חוויה חגיגית ברחבת הריקודים</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- מיצג פרח -->
+        <section class="work" aria-label="מיצג פרח">
+          <div class="work__grid work__grid--flip">
+            <div class="carousel" data-carousel>
+              <div class="carousel__viewport">
+                <div class="carousel__track">
+                  <img
+                    src="perah.png"
+                    alt="מיצג פרח - תמונה 1"
+                    loading="lazy"
+                  />
+                  <img
+                    src="perah_2.png"
+                    alt="מיצג פרח - תמונה 2"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel__btn carousel__btn--prev"
+                type="button"
+                aria-label="תמונה קודמת"
+              >
+                ‹
+              </button>
+              <button
+                class="carousel__btn carousel__btn--next"
+                type="button"
+                aria-label="תמונה הבאה"
+              >
+                ›
+              </button>
+              <div class="carousel__dots" aria-label="בחירת תמונה"></div>
+            </div>
+
+            <div class="work__text">
+              <h3 class="work__title">מיצג פרח 💐</h3>
+              <p class="work__desc">
+                מיצג מואר בכניסה לאירוע וחלוקת פרחים לאורחים.
+              </p>
+              <ul class="work__bullets">
+                <li>תאורת LED מרהיבה</li>
+                <li>חלוקת זר פרחים לכל אורח</li>
+                <li>“וואו” כבר מהכניסה</li>
+                <li>חוויה שנשארת בזיכרון</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ✅ מיצג סוכריות (יש להחזיר לאחר קבלת תמונה מרוז) -->
+        <!--<section class="work" aria-label="מיצג סוכריות">
+          <div class="work__grid">
+            <div class="carousel" data-carousel>
+              <div class="carousel__viewport">
+                <div class="carousel__track">
+                  <img
+                    src=""
+                    alt="יש להוסיף תמונות של מיצג הסוכריות"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel__btn carousel__btn--prev"
+                type="button"
+                aria-label="תמונה קודמת"
+              >
+                ‹
+              </button>
+              <button
+                class="carousel__btn carousel__btn--next"
+                type="button"
+                aria-label="תמונה הבאה"
+              >
+                ›
+              </button>
+              <div class="carousel__dots" aria-label="בחירת תמונה"></div>
+            </div>
+
+            <div class="work__text">
+              <h3 class="work__title">מיצג סוכריות 🍭</h3>
+              <p class="work__desc">
+                דמות ורודה ומתוקה שנכנסת לרחבה ויוצרת גל של התרגשות, צבע ושמחה.
+              </p>
+              <ul class="work__bullets">
+                <li>עיצוב צבעוני ומתוק</li>
+                <li>מגוון סוכריות וממתקים</li>
+                <li>אפשרות לבועות סבון לאווירה קלילה</li>
+                <li>חוויה קסומה כמו מסיפור</li>
+              </ul>
+            </div>
+          </div>
+        </section>-->
+      </div>
+    </main>
+
+    <!-- =========================================================
+      ✅ ABOUT (בוא נכיר) - קרוסלה של 3 תמונות
+      - התאמת גובה הקרוסלה לגובה הטקסט ליד (JS מחשב)
+      - בלי כרטיס לטקסט: הטקסט “יושב על הרקע”
+    ========================================================= -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title section-title--strong">
+          <span class="title-emoji" aria-hidden="true">🩷</span>
+          בוא נכיר
+          <span class="title-emoji" aria-hidden="true">🩷</span>
+        </h2>
+
+        <div class="about__grid">
+          <div
+            class="carousel about__carousel"
+            data-carousel
+            data-match-height="#aboutText"
+          >
+            <div class="carousel__viewport">
+              <div class="carousel__track">
+                <img
+                  src="rose_v_shape.jpeg"
+                  alt="רוז - תמונה 1"
+                  loading="lazy"
+                />
+                <img src="rose_pic2.jpeg" alt="רוז - תמונה 2" loading="lazy" />
+                <img
+                  src="rose_lolypop.jpeg"
+                  alt="רוז - תמונה 3"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <button
+              class="carousel__btn carousel__btn--prev"
+              type="button"
+              aria-label="תמונה קודמת"
+            >
+              ‹
+            </button>
+            <button
+              class="carousel__btn carousel__btn--next"
+              type="button"
+              aria-label="תמונה הבאה"
+            >
+              ›
+            </button>
+            <div class="carousel__dots" aria-label="בחירת תמונה"></div>
+          </div>
+
+          <div class="about__text" id="aboutText">
+            <p>
+              איזה כיף שאתם כאן!<br />
+              קוראים לי רוז ואני מייסדת החברה.<br /><br />
+              יש לי ניסיון של עשור בעולם ההפקות עבדתי עם כלל הגילאים מילדים ועד
+              הגיל השלישי.<br />
+              המוטו שלי הוא שכל אדם זקוק לצומת לב, יחס אישי, להתרגש ולהיות שמח,
+              ולכן החלטתי להביא משהו מיוחד לעולם האירועים <br />
+              אני בחורה עם שמחת חיים ואנרגיות אוהבת לטרוף את החיים ולהנות מהם
+              חשוב לי שמי שנמצא סביבי יהיה שמח ומאושר <br />
+              להיות הקרן אור והשמחה של אדם אחר עושה לי שמח בלב ואני יותר מאשמח
+              לקחת חלק ביום המרגש שלכם ולהיות הקרן אור שלכם ✨
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- WORKS -->
-    <main id="works" class="works">
-      <div class="container">
-        <div class="works__header reveal">
-          <div class="pill">דוגמאות</div>
-          <h2 class="works__title">
-            מציגים <span class="accent">שמפנקים</span> לכם
-          </h2>
-          <p class="works__desc">
-            כמה דוגמאות למיצגים שאנחנו אוהבים במיוחד. אפשר לשנות, לדייק ולהתאים
-            הכול בדיוק אליכם.
-          </p>
-        </div>
-
-        <div class="cards">
-          <!-- Card 1 -->
-          <article class="card reveal">
-            <img
-              class="card__img js-lightbox"
-              src="frute.png"
-              alt="מיצג פירות"
-              loading="lazy"
-            />
-            <div class="card__body">
-              <h3 class="card__title">מיצג פירות 🍇</h3>
-              <p class="card__text">
-                דמות פרי קסומה המהלכת עם שולחן עגול על גלגלים, מחלקת פירות העונה
-                חתוכים ומעוצבים. משתלבת ברחבת הריקודים ויוצרת אפקט וואו.
-              </p>
-
-              <ul class="card__bullets">
-                <li>פירות העונה חתוכים ע״י ספק מקצועי</li>
-                <li>תעודת כשרות</li>
-                <li>אפקט ויזואלי מהרהיב</li>
-                <li>חוויה חגיגית ומרגשת ברחבת הריקודים</li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="card reveal">
-            <div class="card__img card__img--icon" aria-hidden="true">🍭</div>
-            <div class="card__body">
-              <h3 class="card__title">מיצג סוכריות 🍭</h3>
-              <p class="card__text">
-                דמות ורודה שנראית כמו סוכריה נכנסת לרחבה ויוצרת גל של התרגשות,
-                צבע ושמחה. מחלקת מגוון סוכריות טעימות ומשאירה חיוך ענק.
-              </p>
-
-              <ul class="card__bullets">
-                <li>עיצוב צבעוני ומתוק</li>
-                <li>מגוון סוכריות וממתקים</li>
-                <li>מכונת בועות סבון לאווירה קלילה</li>
-                <li>חוויה קסומה כמו מסיפור</li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="card card--small reveal">
-            <img class="card__img js-lightbox" src="perah.png" alt="מיצג פרח"
-            loading="lazy” />
-            <div class="card__body">
-              <h3 class="card__title">מיצג פרח 💐</h3>
-              <p class="card__text">
-                מיצג אומנותי מואר בלדים עם דמות קסומה בתוכו. המיצג עומד בכניסה
-                לאירוע ומקבל את האורחים עם זר פרחים קטנים שיוצאים מתוך השמלה —
-                הפתעה מרגשת שנשארת לכל אורח.
-              </p>
-
-              <ul class="card__bullets">
-                <li>מיצג מואר בתאורת LED מהרהיבה</li>
-                <li>חלוקת זר פרחים חיים לכל אורח</li>
-                <li>אפקט הפתעה וקסם בכניסה לאירוע</li>
-                <li>חוויה עוצמתית מהרגע הראשון</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </div>
-    </main>
-
-    <!-- CTA -->
+    <!-- =========================================================
+      ✅ CTA (בלי כרטיס לטקסט, רק על הרקע)
+    ========================================================= -->
     <section id="contact" class="cta">
-      <div class="cta__bg" aria-hidden="true">
-        <span class="blob blob--4"></span>
-        <span class="blob blob--5"></span>
-      </div>
-
-      <div class="container cta__content reveal">
+      <div class="container cta__inner">
         <div class="pill pill--light">בואו נקבע</div>
-        <h2 class="cta__title">
-          רוצים להפוך את האירוע שלכם<br />
-          לבלתי נשכח?
-        </h2>
-        <p class="cta__desc">
-          שלחו הודעה ונחזור אליכם עם כיוון, רעיון והצעת מחיר שמתאימה בדיוק למה
-          שאתם מדמיינים.
-        </p>
+        <h2 class="cta__title">רוצים להפוך את האירוע שלכם לבלתי נשכח?</h2>
+        <p class="muted">שלחו הודעה ונחזור אליכם עם רעיון והצעת מחיר.</p>
 
         <a
           class="btn btn--dark"
@@ -232,30 +383,14 @@
       </div>
     </section>
 
-    <!-- Floating WhatsApp -->
     <a
       class="fab"
       href="https://wa.me/97253587078"
       target="_blank"
       rel="noopener"
     >
-      וואטסאפ
-      <span class="fab__dot" aria-hidden="true"></span>
+      וואטסאפ <span class="fab__dot" aria-hidden="true"></span>
     </a>
-
-    <!-- To top -->
-    <button class="to-top" type="button" aria-label="חזרה למעלה">↑</button>
-
-    <!-- Lightbox -->
-    <div
-      class="lightbox"
-      role="dialog"
-      aria-modal="true"
-      aria-label="תצוגת תמונה"
-    >
-      <button class="lightbox__close" type="button" aria-label="סגור">✕</button>
-      <img class="lightbox__img" alt="תמונה מוגדלת" />
-    </div>
 
     <footer class="footer">
       <div class="container footer__inner">
