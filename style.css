@@ -32,23 +32,23 @@ body {
   overflow-x: hidden;
 }
 
-/* ✅ רקע תמונה בשקיפות */
+/* ✅ רקע תמונה — בלי שקיפות בכלל */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   background: url("background.png") center / cover no-repeat;
-  opacity: 0.4; /* ✅ בלי שקיפות */
+  opacity: 0.4; /* ✅ ללא שקיפות */
   pointer-events: none;
   z-index: -2;
 }
 
-/* ✅ שכבת צבע רכה מעל */
+/* ✅ אין שכבת צבע */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
-  background: transparent; /* ✅ אין שכבת צבע */
+  background: transparent;
   pointer-events: none;
   z-index: -1;
 }
@@ -217,7 +217,6 @@ header {
 .hero__inner {
   text-align: center;
   padding: 12px 10px 18px;
-  /* ✅ אין כרטיס – רק על הרקע */
 }
 
 .hero__kicker {
@@ -330,7 +329,7 @@ header {
 }
 
 /* =========================================================
-  ✅ FEATURES CAROUSEL (כרטיסים נשארים)
+  ✅ FEATURES CAROUSEL
 ========================================================= */
 .features {
   padding: 28px 0 22px;
@@ -393,7 +392,6 @@ header {
   font-size: 22px;
 }
 
-/* “לא מסודר” */
 .feature-chip--1 {
   transform: translateY(6px) rotate(-1.2deg);
 }
@@ -425,7 +423,7 @@ header {
 }
 
 /* =========================================================
-  ✅ WORKS (טקסטים ללא כרטיסים!)
+  ✅ WORKS
 ========================================================= */
 .works {
   padding: 30px 0 10px;
@@ -474,7 +472,6 @@ header {
   order: 1;
 }
 
-/* ✅ טקסטים על הרקע, ללא כרטיס */
 .work__text {
   padding: 6px 2px;
 }
@@ -587,7 +584,7 @@ header {
 }
 
 /* =========================================================
-  ✅ ABOUT (הטקסט ללא כרטיס + קרוסלה בגובה מותאם)
+  ✅ ABOUT (בוא נכיר) - תמונה אחת בלבד
 ========================================================= */
 .about {
   padding: 20px 0 34px;
@@ -599,6 +596,42 @@ header {
   grid-template-columns: 0.9fr 1.1fr;
   gap: 18px;
   align-items: start;
+}
+
+/* ✅ תמונה אחת במקום קרוסלה */
+.about__image {
+  border-radius: 26px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.46);
+  border: 1px solid rgba(200, 79, 114, 0.16);
+  box-shadow: var(--shadow2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.about__image {
+  border-radius: 26px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.46);
+  border: 1px solid rgba(200, 79, 114, 0.16);
+  box-shadow: var(--shadow2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ✅ להציג את כל התמונה בלי חיתוך */
+.about__image img {
+  width: 100%;
+  height: 420px;
+  object-fit: contain; /* ✅ במקום cover */
+  object-position: center;
+  display: block;
+
+  /* רקע עדין כדי למלא שטחים פנויים (אם יש) */
+  background: radial-gradient(
+    900px 520px at 50% 35%,
+    rgba(255, 255, 255, 0.85),
+    rgba(255, 230, 240, 0.55)
+  );
 }
 
 /* ✅ טקסט על הרקע */
@@ -673,7 +706,8 @@ header {
   .about__grid {
     grid-template-columns: 1fr;
   }
-  .carousel__track img {
+  .carousel__track img,
+  .about__image img {
     height: 360px;
   }
 }
@@ -695,10 +729,338 @@ header {
 }
 
 @media (max-width: 520px) {
-  .carousel__track img {
+  .carousel__track img,
+  .about__image img {
     height: 300px;
   }
   .feature-chip {
     flex-basis: 86vw;
+  }
+}
+/* =========================================================
+  ✅ ABOUT IMAGE - מסגרת צמודה + עיטורים עדינים
+========================================================= */
+
+.about__image {
+  /* המסגרת צמודה לתמונה */
+  display: inline-block;
+  width: 100%;
+  border-radius: 26px;
+  position: relative;
+  overflow: visible; /* כדי שהעיטורים יוכלו “לצאת” החוצה */
+  padding: 10px; /* מסגרת דקה בלבד */
+
+  /* רקע עדין למסגרת */
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(225, 73, 132, 0.22);
+  box-shadow: 0 18px 60px rgba(24, 12, 16, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* התמונה עצמה – בלי חיתוך, ונצמדת למסגרת */
+.about__image img {
+  width: 100%;
+  height: auto; /* ✅ שלא ייחתך */
+  max-height: 560px; /* אפשר לשנות לפי טעם */
+  object-fit: contain; /* ✅ רואים את כל רוז */
+  object-position: center;
+  display: block;
+
+  border-radius: 20px; /* שיהיה פנימי, “רך” */
+  background: rgba(255, 255, 255, 0.65); /* במקרה שיש שוליים בתמונה */
+}
+
+/* פס מסגרת פנימי עדין (ממש פרימיום) */
+.about__image::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 22px;
+  pointer-events: none;
+  border: 1px solid rgba(242, 227, 11, 0.22);
+  opacity: 0.9;
+}
+
+/* עיטורים עדינים: נקודות/הבהובים בפינות */
+.about__image::after {
+  content: "✦";
+  position: absolute;
+  top: -14px;
+  right: -10px;
+  font-size: 18px;
+  color: rgba(225, 73, 132, 0.65);
+  text-shadow: 0 10px 22px rgba(225, 73, 132, 0.25);
+  pointer-events: none;
+
+  /* שכפול “עיטורים” בעוד נקודות */
+  filter: drop-shadow(-26px 18px 0 rgba(244, 137, 187, 0.55))
+    drop-shadow(-6px 52px 0 rgba(242, 227, 11, 0.4))
+    drop-shadow(-42px 72px 0 rgba(225, 73, 132, 0.3));
+}
+
+/* עיטור נוסף בפינה שמאלית תחתונה */
+.about__image .ornament {
+  display: none; /* לא חובה – רק אם תרצה אלמנט נוסף */
+}
+
+@media (max-width: 980px) {
+  .about__image img {
+    max-height: 420px;
+  }
+}
+@media (max-width: 520px) {
+  .about__image {
+    padding: 8px;
+  }
+  .about__image img {
+    max-height: 340px;
+  }
+}
+/* ================================
+   ✅ MOBILE FIRST PATCH (Responsive)
+   הדבק בסוף style.css
+================================ */
+
+/* שיפור כללי למובייל */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  overflow-x: hidden;
+}
+
+/* כדי שהדף לא “יקפוץ” כשהסטיקי נפתח יותר במובייל */
+:root {
+  --anchor-offset: 86px;
+}
+
+/* כפתורים/קישורים: טאץ’ נוח יותר */
+.toplink,
+.topnav__totop,
+.btn,
+.carousel__btn,
+.carousel__dot {
+  touch-action: manipulation;
+}
+
+/* -------------------------
+   ✅ TOP NAV - רספונסיבי
+-------------------------- */
+.topnav__inner {
+  gap: 10px;
+}
+
+.topnav__links {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* מובייל: התפריט נהיה “שורה מתגלגלת” (נוח מאוד) */
+@media (max-width: 720px) {
+  :root {
+    --anchor-offset: 92px;
+  }
+
+  .topnav__inner {
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  .topnav__name {
+    display: none; /* כבר אצלך — נשאר */
+  }
+
+  .topnav__links {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+    gap: 10px;
+  }
+
+  .topnav__links::-webkit-scrollbar {
+    height: 8px;
+  }
+  .topnav__links::-webkit-scrollbar-thumb {
+    background: rgba(200, 79, 114, 0.25);
+    border-radius: 999px;
+  }
+
+  .toplink {
+    flex: 0 0 auto;
+    height: 40px;
+    padding: 0 12px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .topnav__totop {
+    flex: 0 0 auto;
+    height: 40px;
+    width: 44px;
+  }
+}
+
+/* -------------------------
+   ✅ HERO - רספונסיבי
+-------------------------- */
+@media (max-width: 720px) {
+  .hero {
+    padding-top: 34px;
+  }
+
+  .hero__title {
+    gap: 8px;
+    font-size: clamp(30px, 8vw, 44px);
+  }
+
+  .hero__sub {
+    font-size: 15.5px;
+    line-height: 1.85;
+    padding: 0 6px;
+  }
+
+  .hero__actions {
+    gap: 10px;
+  }
+
+  .btn {
+    height: 48px;
+    padding: 0 16px;
+    font-size: 15px;
+    width: min(360px, 92vw);
+  }
+}
+
+/* -------------------------
+   ✅ WORKS / ABOUT - גרידים לעמודה אחת
+-------------------------- */
+@media (max-width: 980px) {
+  .work__grid,
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* הופך את ה“flip” למובייל: תמונה לפני טקסט */
+  .work__grid--flip .carousel,
+  .work__grid--flip .work__text {
+    order: unset;
+  }
+}
+
+@media (max-width: 720px) {
+  .works {
+    padding: 22px 0 8px;
+  }
+
+  .work {
+    margin: 14px 0 18px;
+    padding: 12px 0;
+  }
+
+  .work__title {
+    font-size: 20px;
+  }
+
+  .work__desc {
+    font-size: 15.5px;
+    line-height: 1.9;
+  }
+
+  .work__bullets li {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .about {
+    padding: 18px 0 28px;
+  }
+
+  .about__text p {
+    font-size: 15.5px;
+    line-height: 2;
+  }
+}
+
+/* -------------------------
+   ✅ CAROUSEL - גובה חכם במובייל (לא חונק ולא חותך יותר מדי)
+-------------------------- */
+.carousel {
+  /* קצת יותר “יציב” במובייל */
+  border-radius: 22px;
+}
+
+.carousel__track img {
+  width: 100%;
+  flex: 0 0 100%;
+  object-fit: cover; /* נשאר */
+  height: 420px; /* דסקטופ נשאר */
+}
+
+/* טאבלט */
+@media (max-width: 980px) {
+  .carousel__track img {
+    height: 340px;
+  }
+}
+
+/* מובייל */
+@media (max-width: 520px) {
+  .carousel__track img {
+    height: 280px;
+  }
+
+  .carousel__btn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* -------------------------
+   ✅ ABOUT IMAGE (תמונה אחת) - רספונסיבי
+   אם עדיין לא כתבת CSS למחלקה הזו — זה יטפל בה יפה
+-------------------------- */
+.about__image {
+  border-radius: 26px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(200, 79, 114, 0.16);
+  box-shadow: var(--shadow2);
+}
+
+.about__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* -------------------------
+   ✅ Floating WhatsApp - שלא יכסה דברים במובייל
+-------------------------- */
+@media (max-width: 520px) {
+  .fab {
+    left: 12px;
+    bottom: 12px;
+    height: 46px;
+    padding: 0 14px;
+    font-size: 14px;
+  }
+}
+
+/* -------------------------
+   ✅ Titles - שלא יהיו ענקיים במובייל
+-------------------------- */
+@media (max-width: 520px) {
+  .section-title {
+    font-size: 26px;
+  }
+
+  .section-title--strong::after {
+    width: 170px;
+    height: 5px;
   }
 }
