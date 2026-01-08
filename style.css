@@ -1064,3 +1064,68 @@ body {
     height: 5px;
   }
 }
+/* =========================================
+   ✅ Mobile: first screen = ONLY hero section
+   (Topnav + Hero fits one viewport)
+========================================= */
+@media (max-width: 520px) {
+  /* גובה מדויק במובייל (תומך באייפון/ספארי עם פסי כתובת) */
+  .hero {
+    min-height: calc(100svh - var(--anchor-offset));
+    padding-top: 18px; /* פחות רווח למעלה */
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* מרכז את התוכן בתוך המסך */
+  .hero__inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6px 8px 10px;
+  }
+
+  /* הגל תמיד בתחתית המסך */
+  .wave {
+    margin-top: 0;
+    height: 90px;
+    flex: 0 0 auto;
+  }
+
+  /* כותרת/טקסט קצת קטנים כדי שייכנס ב-1 מסך */
+  .hero__kicker {
+    margin: 0 0 8px;
+    font-size: 14px;
+  }
+
+  .hero__title {
+    font-size: clamp(30px, 9vw, 42px);
+  }
+
+  .hero__sub {
+    font-size: 15px;
+    line-height: 1.8;
+    margin: 10px auto 14px;
+  }
+
+  /* כפתורים – שלא יתפוס יותר מדי מקום */
+  .hero__actions {
+    gap: 10px;
+  }
+
+  .btn {
+    height: 46px;
+    width: min(360px, 92vw);
+  }
+}
+
+/* אם באייפון ה-100svh לא נתמך (נדיר) - גיבוי */
+@supports not (height: 100svh) {
+  @media (max-width: 520px) {
+    .hero {
+      min-height: calc(100vh - var(--anchor-offset));
+    }
+  }
+}
