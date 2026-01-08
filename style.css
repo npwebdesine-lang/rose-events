@@ -1129,3 +1129,108 @@ body {
     }
   }
 }
+/* =========================================================
+   ✨ HERO GLOW / SPARKLES (Pink + Yellow)
+   עובד רק על המסך הראשון (Hero)
+========================================================= */
+
+/* ודא שההירו מאפשר שכבות */
+.hero {
+  position: relative;
+  isolation: isolate; /* חשוב כדי שהשכבות לא יזלגו */
+  overflow: hidden; /* שהזוהר לא יברח החוצה */
+}
+
+/* שכבת "אור" בוקה ורוד/צהוב */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  z-index: 0;
+  pointer-events: none;
+
+  background: radial-gradient(
+      520px 320px at 65% 32%,
+      rgba(244, 137, 187, 0.55),
+      transparent 62%
+    ),
+    radial-gradient(
+      420px 260px at 38% 22%,
+      rgba(242, 227, 11, 0.5),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px 420px at 50% 80%,
+      rgba(225, 73, 132, 0.22),
+      transparent 68%
+    );
+
+  filter: blur(18px);
+  opacity: 0.95;
+  transform: translateZ(0);
+}
+
+/* שכבת "נצנוצים" עדינה (בלי תמונה) */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  /* נקודות קטנטנות בשילוב ורוד/צהוב */
+  background-image: radial-gradient(
+      circle,
+      rgba(242, 227, 11, 0.35) 0 1px,
+      transparent 2px
+    ),
+    radial-gradient(circle, rgba(244, 137, 187, 0.3) 0 1px, transparent 2px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.35) 0 1px, transparent 2px);
+
+  background-size: 120px 120px, 150px 150px, 180px 180px;
+  background-position: 10px 20px, 60px 90px, 30px 140px;
+
+  opacity: 0.9;
+  filter: blur(0.2px);
+  mix-blend-mode: screen;
+
+  /* תנועה מאוד עדינה כדי לתת תחושת "חיים" */
+  animation: heroSparkles 10s ease-in-out infinite alternate;
+}
+
+@keyframes heroSparkles {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate3d(10px, -12px, 0);
+    opacity: 0.85;
+  }
+}
+
+/* העלה את התוכן מעל השכבות */
+.hero__inner,
+.wave {
+  position: relative;
+  z-index: 2;
+}
+
+/* שימר עדין על הטקסט ROSE */
+.hero__rose {
+  text-shadow: 0 0 18px rgba(242, 227, 11, 0.25),
+    0 0 26px rgba(244, 137, 187, 0.22);
+}
+
+/* הילה עדינה לכפתור הראשי */
+.btn--primary {
+  box-shadow: 0 16px 40px rgba(225, 73, 132, 0.28),
+    0 12px 34px rgba(242, 227, 11, 0.18);
+}
+
+/* נגישות: למי שמכבה אנימציות */
+@media (prefers-reduced-motion: reduce) {
+  .hero::after {
+    animation: none;
+  }
+}
