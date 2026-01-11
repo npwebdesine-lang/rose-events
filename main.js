@@ -127,6 +127,7 @@
 // =========================
 // Match height: "בוא נכיר" - גובה הקרוסלה = גובה הטקסט
 // (רק בדסקטופ)
+// =========================
 (() => {
   const root = document.querySelector("[data-match-height]");
   if (!root) return;
