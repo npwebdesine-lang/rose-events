@@ -26,7 +26,13 @@ html {
 
 body {
   margin: 0;
-  font-family: "Heebo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  font-family:
+    "Heebo",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Arial,
+    sans-serif;
   color: var(--text);
   background: #fff;
   overflow-x: hidden;
@@ -132,7 +138,9 @@ header {
   border: 1px solid rgba(200, 79, 114, 0.16);
   box-shadow: 0 10px 22px rgba(24, 12, 16, 0.06);
   font-weight: 900;
-  transition: transform 0.14s ease, box-shadow 0.14s ease,
+  transition:
+    transform 0.14s ease,
+    box-shadow 0.14s ease,
     border-color 0.14s ease;
 }
 .toplink:hover {
@@ -293,7 +301,9 @@ header {
   font-weight: 900;
   border: 1px solid transparent;
   box-shadow: 0 10px 26px rgba(24, 12, 16, 0.1);
-  transition: transform 0.14s ease, box-shadow 0.14s ease;
+  transition:
+    transform 0.14s ease,
+    box-shadow 0.14s ease;
 }
 .btn:hover {
   transform: translateY(-1px);
@@ -312,6 +322,68 @@ header {
 .btn--dark {
   background: #22161b;
   color: #fff;
+}
+
+/* =========================================================
+  ✅ HERO GALLERY (עיצוב אסימטרי לתמונות הפתיחה)
+========================================================= */
+.hero__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 150px;
+  gap: 12px;
+  margin: 35px auto 10px;
+  max-width: 650px; /* תוחם את הגלריה שתראה פרופורציונלית */
+  padding: 0 10px;
+}
+
+.hero__gallery-item {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(24, 12, 16, 0.12);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  position: relative;
+
+  /* הכנה לאנימציית כניסה ב-JS */
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+/* המחלקה שנוסיף ב-JS כדי להציג את התמונות */
+.hero__gallery-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero__gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.hero__gallery-item:hover img {
+  transform: scale(1.05); /* אפקט זום עדין במעבר עכבר */
+}
+
+/* יצירת המראה האסימטרי */
+.hero__gallery-item.tall {
+  grid-row: span 2; /* תופס 2 שורות בגובה */
+}
+
+.hero__gallery-item.wide {
+  grid-column: span 2; /* תופס 2 עמודות לרוחב */
+}
+
+/* התאמות למסכי מובייל (טלפונים) */
+@media (max-width: 520px) {
+  .hero__gallery {
+    grid-auto-rows: 120px; /* מקטין את גובה השורות כדי שייכנס יפה במסך הקטן */
+    margin-top: 25px;
+  }
 }
 
 .wave {
@@ -819,7 +891,6 @@ header {
 }
 /* ================================
    ✅ MOBILE FIRST PATCH (Responsive)
-   הדבק בסוף style.css
 ================================ */
 
 /* שיפור כללי למובייל */
@@ -1022,7 +1093,6 @@ body {
 
 /* -------------------------
    ✅ ABOUT IMAGE (תמונה אחת) - רספונסיבי
-   אם עדיין לא כתבת CSS למחלקה הזו — זה יטפל בה יפה
 -------------------------- */
 .about__image {
   border-radius: 26px;
@@ -1066,7 +1136,6 @@ body {
 }
 /* =========================================
    ✅ Mobile: first screen = ONLY hero section
-   (Topnav + Hero fits one viewport)
 ========================================= */
 @media (max-width: 520px) {
   /* גובה מדויק במובייל (תומך באייפון/ספארי עם פסי כתובת) */
@@ -1129,9 +1198,9 @@ body {
     }
   }
 }
+
 /* =========================================================
    ✨ HERO GLOW / SPARKLES (Pink + Yellow)
-   עובד רק על המסך הראשון (Hero)
 ========================================================= */
 
 /* ודא שההירו מאפשר שכבות */
@@ -1149,7 +1218,8 @@ body {
   z-index: 0;
   pointer-events: none;
 
-  background: radial-gradient(
+  background:
+    radial-gradient(
       520px 320px at 65% 32%,
       rgba(244, 137, 187, 0.55),
       transparent 62%
@@ -1179,16 +1249,19 @@ body {
   pointer-events: none;
 
   /* נקודות קטנטנות בשילוב ורוד/צהוב */
-  background-image: radial-gradient(
-      circle,
-      rgba(242, 227, 11, 0.35) 0 1px,
-      transparent 2px
-    ),
+  background-image:
+    radial-gradient(circle, rgba(242, 227, 11, 0.35) 0 1px, transparent 2px),
     radial-gradient(circle, rgba(244, 137, 187, 0.3) 0 1px, transparent 2px),
     radial-gradient(circle, rgba(255, 255, 255, 0.35) 0 1px, transparent 2px);
 
-  background-size: 120px 120px, 150px 150px, 180px 180px;
-  background-position: 10px 20px, 60px 90px, 30px 140px;
+  background-size:
+    120px 120px,
+    150px 150px,
+    180px 180px;
+  background-position:
+    10px 20px,
+    60px 90px,
+    30px 140px;
 
   opacity: 0.9;
   filter: blur(0.2px);
@@ -1211,20 +1284,23 @@ body {
 
 /* העלה את התוכן מעל השכבות */
 .hero__inner,
-.wave {
+.wave,
+.hero__gallery {
   position: relative;
   z-index: 2;
 }
 
 /* שימר עדין על הטקסט ROSE */
 .hero__rose {
-  text-shadow: 0 0 18px rgba(242, 227, 11, 0.25),
+  text-shadow:
+    0 0 18px rgba(242, 227, 11, 0.25),
     0 0 26px rgba(244, 137, 187, 0.22);
 }
 
 /* הילה עדינה לכפתור הראשי */
 .btn--primary {
-  box-shadow: 0 16px 40px rgba(225, 73, 132, 0.28),
+  box-shadow:
+    0 16px 40px rgba(225, 73, 132, 0.28),
     0 12px 34px rgba(242, 227, 11, 0.18);
 }
 
@@ -1232,5 +1308,108 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .hero::after {
     animation: none;
+  }
+}
+/* =========================================================
+  ✅ HERO GALLERY (עיצוב אסימטרי + אנימציית CSS)
+========================================================= */
+.hero__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 150px;
+  gap: 12px;
+  margin: 35px auto 10px;
+  max-width: 650px;
+  padding: 0 10px;
+  position: relative;
+  z-index: 10; /* מוודא שהתמונות יופיעו תמיד מעל רקע האורות */
+}
+
+.hero__gallery-item {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(24, 12, 16, 0.12);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  position: relative;
+
+  /* אנימציית הופעה נטולת JS */
+  opacity: 0;
+  animation: heroFadeUp 0.8s ease forwards;
+}
+
+/* דיליי כדי שכל תמונה תופיע רגע אחרי הקודמת */
+.hero__gallery-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.hero__gallery-item:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.hero__gallery-item:nth-child(3) {
+  animation-delay: 0.5s;
+}
+.hero__gallery-item:nth-child(4) {
+  animation-delay: 0.7s;
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero__gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.hero__gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.hero__gallery-item.tall {
+  grid-row: span 2;
+}
+.hero__gallery-item.wide {
+  grid-column: span 2;
+}
+
+/* =========================
+   ✅ כיתוב מרחף על התמונות
+========================= */
+.gallery-text {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #a40264; /* הצבע הראשי של רוז */
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  z-index: 5;
+}
+
+@media (max-width: 520px) {
+  .hero__gallery {
+    grid-auto-rows: 120px;
+    margin-top: 25px;
+  }
+  .gallery-text {
+    font-size: 12px;
+    padding: 4px 10px;
+    bottom: 8px;
   }
 }

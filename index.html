@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="he" dir="rtl">
   <head>
     <meta charset="UTF-8" />
@@ -63,7 +63,20 @@
           <a class="btn btn--ghost" href="#works">גלו את השירותים שלנו</a>
         </div>
       </div>
-
+      <div class="hero__gallery">
+        <div class="hero__gallery-item tall">
+          <img src="hero_pic1.jpeg" alt="תצוגה 1" loading="lazy" />
+        </div>
+        <div class="hero__gallery-item">
+          <img src="hero_pic4.jpeg" alt="תצוגה 2" loading="lazy" />
+        </div>
+        <div class="hero__gallery-item">
+          <img src="hero_pic3.jpeg" alt="תצוגה 3" loading="lazy" />
+        </div>
+        <div class="hero__gallery-item wide">
+          <img src="hero_pic2.jpeg" alt="תצוגה 4" loading="lazy" />
+        </div>
+      </div>
       <div class="wave" aria-hidden="true">
         <svg viewBox="0 0 1440 140" preserveAspectRatio="none">
           <path
@@ -477,7 +490,7 @@
           const update = () => {
             track.style.transform = `translateX(${index * 100}%)`;
             dots.forEach((d, i) =>
-              d.classList.toggle("is-active", i === index)
+              d.classList.toggle("is-active", i === index),
             );
           };
 

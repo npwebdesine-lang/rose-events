@@ -155,3 +155,21 @@
   apply();
   window.addEventListener("resize", apply);
 })();
+
+// =========================
+// Hero Gallery Fade-in Animation
+// =========================
+(() => {
+  const galleryItems = document.querySelectorAll(".hero__gallery-item");
+  if (!galleryItems.length) return;
+
+  // טוען את התמונות אחת אחרי השנייה בדיליי קצר
+  galleryItems.forEach((item, index) => {
+    setTimeout(
+      () => {
+        item.classList.add("visible");
+      },
+      200 * (index + 1),
+    );
+  });
+})();
